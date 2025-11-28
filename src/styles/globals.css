@@ -1,0 +1,136 @@
+:root {
+  /* Color Palette - Premium & Modern */
+  --primary: #3b82f6;
+  /* Blue Peak Blue */
+  --primary-dark: #2563eb;
+  --primary-light: #60a5fa;
+  --secondary: #8b5cf6;
+  /* Violet accent */
+  --accent: #f43f5e;
+  /* Rose accent for alerts/important */
+
+  --background: #0f172a;
+  /* Slate 900 - Deep dark background */
+  --surface: #1e293b;
+  /* Slate 800 - Card background */
+  --surface-hover: #334155;
+
+  --text-main: #f8fafc;
+  /* Slate 50 */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
+
+  --border: #334155;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
+  --gradient-surface: linear-gradient(180deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.7));
+
+  /* Spacing & Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+
+  /* Fonts */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Utility Classes (Custom) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.glass-panel {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  opacity: 0.95;
+}
+
+.heading-xl {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.heading-lg {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
