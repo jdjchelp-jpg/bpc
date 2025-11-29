@@ -210,28 +210,13 @@ export default function AIVisionPage() {
                         {result ? (
                             <div style={{
                                 background: 'rgba(255,255,255,0.05)',
-                                padding: '1.5rem',
-                                borderRadius: 'var(--radius-md)',
-                                whiteSpace: 'pre-wrap',
-                                lineHeight: '1.6',
-                                maxHeight: '600px',
-                                overflowY: 'auto'
-                            }}>
-                                {result}
-                            </div>
-                        ) : (
-                            <div style={{
-                                textAlign: 'center',
-                                padding: '4rem 2rem',
-                                color: 'var(--text-muted)'
-                            }}>
                                 <ImageIcon size={64} style={{ margin: '0 auto 1rem', opacity: 0.3 }} />
                                 <p>Upload an image and click "Analyze" to see results</p>
                             </div>
                         )}
-                    </div>
                 </div>
             </div>
-        </PremiumGuard>
+        </div>
+        </PremiumGuard >
     )
 }

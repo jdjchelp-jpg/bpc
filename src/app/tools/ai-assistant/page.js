@@ -140,7 +140,7 @@ export default function AIAssistantPage() {
                                     maxWidth: '80%',
                                     lineHeight: '1.5'
                                 }}>
-                                    {msg.content}
+                                    {typeof msg.content === 'object' ? JSON.stringify(msg.content) : msg.content}
                                     {msg.reasoning_details && (
                                         <div style={{
                                             marginTop: '0.5rem',
