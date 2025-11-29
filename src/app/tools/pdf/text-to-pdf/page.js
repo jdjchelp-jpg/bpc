@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Type, Download, Loader2 } from 'lucide-react';
+import { ArrowLeft, Type, Download, Loader2, FileText } from 'lucide-react';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 
 export default function TextToPDF() {
@@ -141,8 +141,8 @@ export default function TextToPDF() {
                                     onClick={generatePDF}
                                     disabled={!text.trim() || isProcessing}
                                     className={`w-full px-8 py-4 rounded-xl font-bold text-white flex items-center justify-center transition-all ${!text.trim()
-                                            ? 'bg-gray-300 cursor-not-allowed'
-                                            : 'bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-purple-500/30'
+                                        ? 'bg-gray-300 cursor-not-allowed'
+                                        : 'bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-purple-500/30'
                                         }`}
                                 >
                                     {isProcessing ? (
