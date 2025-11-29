@@ -2,33 +2,33 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { FileText, Minimize2, Type, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Calculator, Scale, Percent } from 'lucide-react';
 
-export default function PDFToolsDashboard() {
+export default function MathDashboard() {
     const tools = [
         {
-            id: 'merge',
-            name: 'Merge PDFs',
-            description: 'Combine multiple PDF files into a single document.',
-            icon: <FileText className="w-8 h-8 text-blue-500" />,
-            href: '/tools/pdf/merge',
-            color: 'bg-blue-50 hover:bg-blue-100 border-blue-200',
+            id: 'calculator',
+            name: 'Scientific Calculator',
+            description: 'Advanced calculator for complex math.',
+            icon: <Calculator className="w-8 h-8 text-indigo-500" />,
+            href: '/tools/math/calculator',
+            color: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200',
         },
         {
-            id: 'compress',
-            name: 'Compress PDF',
-            description: 'Reduce the file size of your PDF documents.',
-            icon: <Minimize2 className="w-8 h-8 text-green-500" />,
-            href: '/tools/pdf/compress',
+            id: 'converter',
+            name: 'Unit Converter',
+            description: 'Convert length, weight, temperature, and more.',
+            icon: <Scale className="w-8 h-8 text-green-500" />,
+            href: '/tools/math/converter',
             color: 'bg-green-50 hover:bg-green-100 border-green-200',
         },
         {
-            id: 'text-to-pdf',
-            name: 'Text to PDF',
-            description: 'Convert plain text into a downloadable PDF file.',
-            icon: <Type className="w-8 h-8 text-purple-500" />,
-            href: '/tools/pdf/text-to-pdf',
-            color: 'bg-purple-50 hover:bg-purple-100 border-purple-200',
+            id: 'tips',
+            name: 'Tip Calculator',
+            description: 'Calculate tips and split bills easily.',
+            icon: <Percent className="w-8 h-8 text-yellow-500" />,
+            href: '/tools/tip-calculator', // Reusing existing tool
+            color: 'bg-yellow-50 hover:bg-yellow-100 border-yellow-200',
         },
     ];
 
@@ -40,8 +40,8 @@ export default function PDFToolsDashboard() {
                         <ArrowLeft className="w-5 h-5 mr-2" />
                         Back to All Tools
                     </Link>
-                    <h1 className="text-4xl font-extrabold text-gray-900 mb-2">PDF Toolkit</h1>
-                    <p className="text-xl text-gray-600">Simple, secure, and fast PDF utilities. All processing happens in your browser.</p>
+                    <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Math Toolkit</h1>
+                    <p className="text-xl text-gray-600">Solve problems and convert units instantly.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

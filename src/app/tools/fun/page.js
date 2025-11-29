@@ -2,33 +2,33 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { FileText, Minimize2, Type, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Dices, Coins, Shuffle, Sparkles, Smile } from 'lucide-react';
 
-export default function PDFToolsDashboard() {
+export default function FunDashboard() {
     const tools = [
         {
-            id: 'merge',
-            name: 'Merge PDFs',
-            description: 'Combine multiple PDF files into a single document.',
-            icon: <FileText className="w-8 h-8 text-blue-500" />,
-            href: '/tools/pdf/merge',
+            id: 'random',
+            name: 'Random Generators',
+            description: 'Generate numbers, colors, emojis, and more.',
+            icon: <Shuffle className="w-8 h-8 text-purple-500" />,
+            href: '/tools/fun/random',
+            color: 'bg-purple-50 hover:bg-purple-100 border-purple-200',
+        },
+        {
+            id: 'decision',
+            name: 'Decision Maker',
+            description: 'Flip a coin or roll dice to decide your fate.',
+            icon: <Dices className="w-8 h-8 text-blue-500" />,
+            href: '/tools/fun/decision',
             color: 'bg-blue-50 hover:bg-blue-100 border-blue-200',
         },
         {
-            id: 'compress',
-            name: 'Compress PDF',
-            description: 'Reduce the file size of your PDF documents.',
-            icon: <Minimize2 className="w-8 h-8 text-green-500" />,
-            href: '/tools/pdf/compress',
-            color: 'bg-green-50 hover:bg-green-100 border-green-200',
-        },
-        {
-            id: 'text-to-pdf',
-            name: 'Text to PDF',
-            description: 'Convert plain text into a downloadable PDF file.',
-            icon: <Type className="w-8 h-8 text-purple-500" />,
-            href: '/tools/pdf/text-to-pdf',
-            color: 'bg-purple-50 hover:bg-purple-100 border-purple-200',
+            id: 'fortune',
+            name: 'Digital Fortune',
+            description: 'Open a cookie and see your luck score.',
+            icon: <Sparkles className="w-8 h-8 text-yellow-500" />,
+            href: '/tools/fun/fortune',
+            color: 'bg-yellow-50 hover:bg-yellow-100 border-yellow-200',
         },
     ];
 
@@ -40,8 +40,8 @@ export default function PDFToolsDashboard() {
                         <ArrowLeft className="w-5 h-5 mr-2" />
                         Back to All Tools
                     </Link>
-                    <h1 className="text-4xl font-extrabold text-gray-900 mb-2">PDF Toolkit</h1>
-                    <p className="text-xl text-gray-600">Simple, secure, and fast PDF utilities. All processing happens in your browser.</p>
+                    <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Fun Zone</h1>
+                    <p className="text-xl text-gray-600">Light tools for quick decisions and entertainment.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
