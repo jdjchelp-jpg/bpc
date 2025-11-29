@@ -55,7 +55,11 @@ export function ToastProvider({ children }) {
                             animation: 'slideIn 0.3s ease-out'
                         }}
                     >
-                        <span>{toast.message}</span>
+                        <span>
+                            {typeof toast.message === 'object'
+                                ? JSON.stringify(toast.message)
+                                : toast.message}
+                        </span>
                         <button
                             onClick={() => removeToast(toast.id)}
                             style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', padding: 0, display: 'flex' }}
