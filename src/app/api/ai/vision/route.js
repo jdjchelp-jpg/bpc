@@ -31,8 +31,8 @@ export async function POST(req) {
         }
 
         const apiKey = process.env.OPENROUTER_API_KEY
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-        const siteName = 'Blue Peak Countdown'
+        const siteUrl = 'https://bpc-nu.vercel.app/'
+        const siteName = 'BPC'
 
         // Use vision model (from user's snippet: openai/gpt-oss-20b:free)
         const visionModel = model || 'openai/gpt-4o-mini:free' // gpt-4o-mini supports vision and is free

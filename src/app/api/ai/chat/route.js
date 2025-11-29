@@ -32,8 +32,8 @@ export async function POST(req) {
         }
 
         const apiKey = process.env.OPENROUTER_API_KEY
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-        const siteName = 'Blue Peak Countdown'
+        const siteUrl = 'https://bpc-nu.vercel.app/'
+        const siteName = 'BPC'
 
         // First API call (with reasoning if supported/requested)
         // Using the logic provided: x-ai/grok-4.1-fast:free supports reasoning
