@@ -112,8 +112,12 @@ export default function PrintWorksheetPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
                     {data.data.map((item, i) => (
                         <div key={i} style={{ borderBottom: '1px solid #ccc', padding: '1rem 0', fontSize: '1.2rem' }}>
-                            {item.expression ? (
-                                <span>{item.id + 1}. {item.expression}</span>
+                            {typeof item === 'object' && item !== null ? (
+                                item.expression ? (
+                                    <span>{item.id + 1}. {item.expression}</span>
+                                ) : (
+                                    <span>{JSON.stringify(item)}</span>
+                                )
                             ) : (
                                 <span>{item}</span>
                             )}
