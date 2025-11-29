@@ -159,7 +159,9 @@ export default function AIAssistantPage() {
                                             color: 'var(--text-muted)'
                                         }}>
                                             <strong style={{ display: 'block', marginBottom: '0.25rem' }}>Reasoning:</strong>
-                                            {msg.reasoning_details}
+                                            {typeof msg.reasoning_details === 'object'
+                                                ? JSON.stringify(msg.reasoning_details, null, 2)
+                                                : msg.reasoning_details}
                                         </div>
                                     )}
                                 </div>
