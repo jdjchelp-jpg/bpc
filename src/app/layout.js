@@ -1,9 +1,6 @@
 import '@/styles/globals.css'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
-import '@/styles/globals.css'
-import { Inter } from 'next/font/google'
-import Header from '@/components/Header'
 import { SettingsProvider } from '@/context/SettingsContext'
 import { ToastProvider } from '@/components/ToastProvider'
 import { AuthProvider } from '@/context/AuthContext'
@@ -23,7 +20,9 @@ export default function RootLayout({ children }) {
                     <SettingsProvider>
                         <ToastProvider>
                             <Header />
-                            {children}
+                            <main style={{ minHeight: 'calc(100vh - 80px)', paddingTop: '2rem' }}>
+                                {children}
+                            </main>
                         </ToastProvider>
                     </SettingsProvider>
                 </AuthProvider>
