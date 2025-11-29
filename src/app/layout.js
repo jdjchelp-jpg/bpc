@@ -12,20 +12,26 @@ export const metadata = {
     description: 'The ultimate time and utility application.',
 }
 
+import ErrorBoundary from '@/components/ErrorBoundary'
+
+// ... imports
+
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <AuthProvider>
-                    <SettingsProvider>
-                        <ToastProvider>
-                            <Header />
-                            <main style={{ minHeight: 'calc(100vh - 80px)', paddingTop: '2rem' }}>
-                                {children}
-                            </main>
-                        </ToastProvider>
-                    </SettingsProvider>
-                </AuthProvider>
+                <ErrorBoundary>
+                    <AuthProvider>
+                        <SettingsProvider>
+                            <ToastProvider>
+                                <Header />
+                                <main style={{ minHeight: 'calc(100vh - 80px)', paddingTop: '2rem' }}>
+                                    {children}
+                                </main>
+                            </ToastProvider>
+                        </SettingsProvider>
+                    </AuthProvider>
+                </ErrorBoundary>
             </body>
         </html>
     )
