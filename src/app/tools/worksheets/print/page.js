@@ -123,7 +123,7 @@ export default function PrintWorksheetPage() {
             )}
 
             <div style={{ marginTop: '2rem', textAlign: 'center', fontWeight: 'bold', fontSize: '1.2rem' }}>
-                M + A + T + H = <span style={{ fontFamily: 'cursive', color: '#d946ef' }}>love</span>
+                BPC <span style={{ fontFamily: 'cursive', color: '#d946ef' }}>BCC</span>
             </div>
         </div>
     )

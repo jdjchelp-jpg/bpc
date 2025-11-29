@@ -1,13 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { generateMultiplicationTable, generatePrimes, generateSquaresAndCubes, generateMathProblems } from '@/lib/worksheets'
 
 export default function WorksheetsPage() {
-    const [type, setType] = useState('multiplication') // multiplication, primes, squares, problems
+    const [type, setType] = useState('multiplication')
     const [limit, setLimit] = useState(12)
     const [generatedData, setGeneratedData] = useState(null)
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const handleGenerate = () => {
         let data
@@ -27,12 +32,13 @@ export default function WorksheetsPage() {
         setGeneratedData(data)
     }
 
-    // Store data in localStorage for the print page to pick up
     const handlePrintPreview = () => {
         if (typeof window !== 'undefined') {
             localStorage.setItem('worksheetData', JSON.stringify({ type, data: generatedData, title: type.toUpperCase() }))
         }
     }
+
+    if (!mounted) return null
 
     return (
         <div className="container" style={{ padding: '2rem 1.5rem' }}>

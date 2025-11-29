@@ -27,6 +27,8 @@ export default function CountdownTimer({ targetDate, title, theme = 'default' })
 
     if (!isMounted || timeLeft === null) return null
 
+    if (!isMounted || timeLeft === null) return null
+
     const duration = intervalToDuration({ start: 0, end: timeLeft * 1000 })
 
     const themeStyles = {
@@ -84,7 +86,9 @@ export default function CountdownTimer({ targetDate, title, theme = 'default' })
         }}>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', fontWeight: '700' }}>{title}</h3>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+                {duration.years > 0 && <TimeUnit value={duration.years} label="Years" />}
+                {(duration.years > 0 || duration.months > 0) && <TimeUnit value={duration.months} label="Months" />}
                 <TimeUnit value={duration.days || 0} label="Days" />
                 <TimeUnit value={duration.hours || 0} label="Hours" />
                 <TimeUnit value={duration.minutes || 0} label="Minutes" />

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Calculator, Calendar, CloudRain, Timer, Activity, Globe } from 'lucide-react'
+import { Calculator, Calendar, CloudRain, Timer, Activity, Globe, Key, Crown, Bot, Eye } from 'lucide-react'
 
 export default function ToolsPage() {
     const tools = [
@@ -10,6 +10,9 @@ export default function ToolsPage() {
         { name: 'Worksheet Generator', icon: <Calculator size={32} />, href: '/tools/worksheets', desc: 'Math tables & problems' },
         { name: 'Speed Test', icon: <Activity size={32} />, href: '/tools/speedtest', desc: 'Check internet performance' },
         { name: 'Meeting Planner', icon: <Globe size={32} />, href: '/tools/meeting', desc: 'Coordinate across timezones' },
+        { name: 'Password Generator', icon: <Key size={32} />, href: '/tools/password-generator', desc: 'Secure password creation', premium: true },
+        { name: 'AI Assistant', icon: <Bot size={32} />, href: '/tools/ai-assistant', desc: 'Chat, Summarize, & Generate', premium: true },
+        { name: 'AI Vision', icon: <Eye size={32} />, href: '/tools/ai-vision', desc: 'Solve math from photos, OCR', premium: true },
     ]
 
     return (
@@ -18,7 +21,34 @@ export default function ToolsPage() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                 {tools.map((tool, i) => (
-                    <Link key={i} href={tool.href} className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.2s', textDecoration: 'none', color: 'inherit' }}>
+                    <Link key={i} href={tool.href} className="glass-panel" style={{
+                        padding: '2rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                        transition: 'transform 0.2s',
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        position: 'relative'
+                    }}>
+                        {tool.premium && (
+                            <div style={{
+                                position: 'absolute',
+                                top: '10px',
+                                right: '10px',
+                                background: 'linear-gradient(135deg, var(--accent), var(--primary))',
+                                padding: '0.25rem 0.5rem',
+                                borderRadius: 'var(--radius-sm)',
+                                fontSize: '0.7rem',
+                                fontWeight: 'bold',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.25rem'
+                            }}>
+                                <Crown size={12} /> PRO
+                            </div>
+                        )}
                         <div style={{ marginBottom: '1.5rem', color: 'var(--primary-light)' }}>
                             {tool.icon}
                         </div>

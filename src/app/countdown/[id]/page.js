@@ -56,8 +56,51 @@ export default function SharedCountdown() {
 
                 <div style={{ marginTop: '2rem', textAlign: 'center' }}>
                     <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>Share this countdown:</p>
-                    <div className="glass-panel" style={{ padding: '1rem', display: 'inline-block', fontSize: '0.9rem' }}>
+                    <div className="glass-panel" style={{ padding: '1rem', display: 'inline-block', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
                         {typeof window !== 'undefined' ? window.location.href : ''}
+                    </div>
+
+                    <div style={{ textAlign: 'left', maxWidth: '100%' }}>
+                        <p style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Embed on your site:</p>
+                        <div style={{ position: 'relative' }}>
+                            <textarea
+                                readOnly
+                                value={`<iframe src="${typeof window !== 'undefined' ? window.location.href : ''}" width="100%" height="400" frameborder="0"></iframe>`}
+                                style={{
+                                    width: '100%',
+                                    height: '80px',
+                                    padding: '0.75rem',
+                                    borderRadius: 'var(--radius-md)',
+                                    background: 'var(--surface)',
+                                    border: '1px solid var(--border)',
+                                    color: 'var(--text-muted)',
+                                    fontFamily: 'monospace',
+                                    fontSize: '0.8rem',
+                                    resize: 'none'
+                                }}
+                            />
+                            <button
+                                onClick={() => {
+                                    const code = `<iframe src="${window.location.href}" width="100%" height="400" frameborder="0"></iframe>`
+                                    navigator.clipboard.writeText(code)
+                                    alert('Embed code copied!')
+                                }}
+                                style={{
+                                    position: 'absolute',
+                                    top: '0.5rem',
+                                    right: '0.5rem',
+                                    padding: '0.25rem 0.5rem',
+                                    fontSize: '0.7rem',
+                                    background: 'var(--primary)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: 'var(--radius-sm)',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Copy
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
