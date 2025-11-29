@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Calculator, Calendar, CloudRain, Timer, Activity, Globe, Key, Crown, Bot, Eye } from 'lucide-react'
+import { Calculator, Calendar, CloudRain, Timer, Activity, Globe, Key, Crown, Bot, Eye, FileText, QrCode, RefreshCw } from 'lucide-react'
 
 export default function ToolsPage() {
     const tools = [
@@ -13,6 +13,11 @@ export default function ToolsPage() {
         { name: 'Password Generator', icon: <Key size={32} />, href: '/tools/password-generator', desc: 'Secure password creation', premium: true },
         { name: 'AI Assistant', icon: <Bot size={32} />, href: '/tools/ai-assistant', desc: 'Chat, Summarize, & Generate', premium: true },
         { name: 'AI Vision', icon: <Eye size={32} />, href: '/tools/ai-vision', desc: 'Solve math from photos, OCR', premium: true },
+        { name: 'Focus Timer', icon: <Timer size={32} />, href: '/tools/pomodoro', desc: 'Pomodoro & Task Tracking', premium: true },
+        { name: 'Habit Tracker', icon: <Activity size={32} />, href: '/tools/habit-tracker', desc: 'Build streaks & routines', premium: true },
+        { name: 'PDF Tools', icon: <FileText size={32} />, href: '/tools/pdf', desc: 'Merge, Split, Compress', premium: true },
+        { name: 'QR Generator', icon: <QrCode size={32} />, href: '/tools/qr-code', desc: 'Create & Download QR Codes', premium: true },
+        { name: 'Image Converter', icon: <RefreshCw size={32} />, href: '/tools/image-converter', desc: 'Convert & Resize Images', premium: true },
     ]
 
     return (

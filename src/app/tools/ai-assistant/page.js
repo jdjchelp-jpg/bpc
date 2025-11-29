@@ -55,12 +55,14 @@ export default function AIAssistantPage() {
             })
 
             const data = await response.json()
+            console.log('AI Response Data:', data) // Debug logging
 
             if (!response.ok) {
                 throw new Error(data.error || 'Failed to get response')
             }
 
             const assistantMessage = data.choices[0].message
+            console.log('Assistant Message:', assistantMessage) // Debug logging
             setMessages(prev => [...prev, assistantMessage])
 
         } catch (error) {
