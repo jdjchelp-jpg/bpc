@@ -65,7 +65,11 @@ export default function AIAssistantPage() {
 
         } catch (error) {
             console.error('Chat Error:', error)
-            setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' }])
+            const errorMessage = error.message || 'Unknown error occurred'
+            setMessages(prev => [...prev, {
+                role: 'assistant',
+                content: `Sorry, I encountered an error: ${errorMessage}. Please make sure you're signed in with a premium account.`
+            }])
         } finally {
             setLoading(false)
         }
