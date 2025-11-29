@@ -61,6 +61,11 @@ export default function AIAssistantPage() {
                 throw new Error(data.error || 'Failed to get response')
             }
 
+            if (!data.choices || data.choices.length === 0 || !data.choices[0].message) {
+                console.error('Invalid API Response:', data)
+                throw new Error('Invalid response from AI provider')
+            }
+
             const assistantMessage = data.choices[0].message
             console.log('Assistant Message:', assistantMessage) // Debug logging
             setMessages(prev => [...prev, assistantMessage])
