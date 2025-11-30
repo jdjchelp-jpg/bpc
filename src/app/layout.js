@@ -18,7 +18,7 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
                 <ErrorBoundary>
                     <AuthProvider>

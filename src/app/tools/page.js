@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Calculator, Calendar, CloudRain, Timer, Activity, Globe, Key, Crown, Bot, Eye, FileText, QrCode, RefreshCw } from 'lucide-react'
+import { Calculator, Calendar, CloudRain, Timer, Activity, Globe, Key, Crown, Bot, Eye, FileText, QrCode, RefreshCw, Clock, BookOpen, Music, Zap, Bookmark, Coins, Palette, Terminal, Gamepad2, Sigma, Heart, User, Sun, Sunrise } from 'lucide-react'
 
 export default function ToolsPage() {
     const tools = [
@@ -18,6 +18,24 @@ export default function ToolsPage() {
         { name: 'PDF Tools', icon: <FileText size={32} />, href: '/tools/pdf', desc: 'Merge, Split, Compress', premium: true },
         { name: 'QR Generator', icon: <QrCode size={32} />, href: '/tools/qr-code', desc: 'Create & Download QR Codes', premium: true },
         { name: 'Image Converter', icon: <RefreshCw size={32} />, href: '/tools/image-converter', desc: 'Convert & Resize Images', premium: true },
+        { name: 'Timetable Generator', icon: <Calendar size={32} />, href: '/tools/timetable', desc: 'Create & Print Class Schedules', premium: false },
+        { name: 'Time Suite', icon: <Clock size={32} />, href: '/tools/time', desc: 'Stopwatch & Timer', premium: true },
+        { name: 'Study Hub', icon: <BookOpen size={32} />, href: '/tools/study', desc: 'Flashcards, Quizzes, Summarizer', premium: true },
+        { name: 'Remix Station', icon: <Music size={32} />, href: '/tools/remix', desc: 'Audio & Music Tools', premium: true },
+        { name: 'Tiny Tools', icon: <Zap size={32} />, href: '/tools/tiny', desc: 'Quick Utilities: Memo, Todo', premium: true },
+        { name: 'Age Calculator', icon: <User size={32} />, href: '/tools/age-calculator', desc: 'Calculate exact age & milestones', premium: true },
+        { name: 'Bookmarks Manager', icon: <Bookmark size={32} />, href: '/tools/bookmarks', desc: 'Organize your favorite links', premium: true },
+        { name: 'Currency Converter', icon: <Coins size={32} />, href: '/tools/currency-converter', desc: 'Real-time exchange rates', premium: true },
+        { name: 'Design Tools', icon: <Palette size={32} />, href: '/tools/design', desc: 'Colors, Gradients, & Fonts', premium: true },
+        { name: 'Dev Utilities', icon: <Terminal size={32} />, href: '/tools/dev', desc: 'JSON, Base64, Regex', premium: true },
+        { name: 'Fun Zone', icon: <Gamepad2 size={32} />, href: '/tools/fun', desc: 'Games & Interactive Toys', premium: true },
+        { name: 'Math Tools', icon: <Sigma size={32} />, href: '/tools/math', desc: 'Advanced Calculators & Graphing', premium: true },
+        { name: 'Mood Tracker', icon: <Heart size={32} />, href: '/tools/mood', desc: 'Track your daily mood', premium: true },
+        { name: 'Name Generator', icon: <User size={32} />, href: '/tools/names', desc: 'Generate creative names', premium: true },
+        { name: 'Scheduler', icon: <Calendar size={32} />, href: '/tools/scheduler', desc: 'Plan your week efficiently', premium: true },
+        { name: 'Sunrise/Sunset', icon: <Sunrise size={32} />, href: '/tools/sunrise-sunset', desc: 'Solar times for any location', premium: true },
+        { name: 'Timezone Viewer', icon: <Globe size={32} />, href: '/tools/timezone-viewer', desc: 'Visual world clock', premium: true },
+        { name: 'Tip Calculator', icon: <Coins size={32} />, href: '/tools/tip-calculator', desc: 'Split bills easily', premium: true },
     ]
 
     return (

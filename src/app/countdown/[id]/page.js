@@ -1,19 +1,26 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import CountdownTimer from '@/components/CountdownTimer'
 import Link from 'next/link'
-import { ArrowLeft, Share2, Repeat, Calendar, Music, Settings, Edit2 } from 'lucide-react'
+import { ArrowLeft, Share2, Repeat, Calendar, Music, Settings, Edit2, Code, X, Copy, Check } from 'lucide-react'
 
 export default function SharedCountdown() {
     const { id } = useParams()
+    const searchParams = useSearchParams()
+    const isEmbed = searchParams.get('embed') === 'true'
+
     const [countdown, setCountdown] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [isLive, setIsLive] = useState(false)
     const [showConfetti, setShowConfetti] = useState(false)
+
+    // Embed Modal State
+    const [showEmbedModal, setShowEmbedModal] = useState(false)
+    const [copied, setCopied] = useState(false)
 
     // Theme configurations
     const themes = {
@@ -70,6 +77,13 @@ export default function SharedCountdown() {
         }
     }, [showConfetti])
 
+    const handleCopyEmbed = () => {
+        const code = `<iframe src="${window.location.origin}/countdown/${id}?embed=true" width="100%" height="400" frameborder="0" style="border-radius: 12px; overflow: hidden;"></iframe>`
+        navigator.clipboard.writeText(code)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+    }
+
     if (loading) return <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div></div>
     if (error) return <div className="min-h-screen flex items-center justify-center bg-gray-900 text-red-400">{error}</div>
     if (!countdown) return null
@@ -97,24 +111,26 @@ export default function SharedCountdown() {
                 </div>
             )}
 
-            {/* Navigation */}
-            <div className="p-6 flex justify-between items-center z-10">
-                <Link href="/countdown" className="flex items-center text-white/80 hover:text-white transition-colors">
-                    <ArrowLeft className="w-5 h-5 mr-2" />
-                    Back
-                </Link>
-                <div className="flex space-x-4">
-                    <button className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" title="Edit">
-                        <Edit2 className="w-5 h-5 text-white" />
-                    </button>
-                    <button className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" title="Settings">
-                        <Settings className="w-5 h-5 text-white" />
-                    </button>
+            {/* Navigation - Hidden in Embed Mode */}
+            {!isEmbed && (
+                <div className="p-6 flex justify-between items-center z-10">
+                    <Link href="/countdown" className="flex items-center text-white/80 hover:text-white transition-colors">
+                        <ArrowLeft className="w-5 h-5 mr-2" />
+                        Back
+                    </Link>
+                    <div className="flex space-x-4">
+                        <button className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" title="Edit">
+                            <Edit2 className="w-5 h-5 text-white" />
+                        </button>
+                        <button className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors" title="Settings">
+                            <Settings className="w-5 h-5 text-white" />
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col items-center justify-center p-4 text-center z-10">
+            <div className={`flex-1 flex flex-col items-center justify-center p-4 text-center z-10 ${isEmbed ? 'scale-90' : ''}`}>
                 <h1 className="text-4xl md:text-6xl font-black mb-8 tracking-tight drop-shadow-lg">
                     {countdown.title}
                 </h1>
@@ -138,30 +154,80 @@ export default function SharedCountdown() {
                     </div>
                 )}
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl w-full">
-                    <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
-                        <Share2 className="w-6 h-6 mb-2" />
-                        <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
-                        <Repeat className="w-6 h-6 mb-2" />
-                        <span className="text-sm font-medium">Repeat</span>
-                    </button>
-                    <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
-                        <Calendar className="w-6 h-6 mb-2" />
-                        <span className="text-sm font-medium">Add to Cal</span>
-                    </button>
-                    <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
-                        <Music className="w-6 h-6 mb-2" />
-                        <span className="text-sm font-medium">Theme</span>
-                    </button>
-                </div>
+                {/* Controls - Hidden in Embed Mode */}
+                {!isEmbed && (
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-3xl w-full">
+                        <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
+                            <Share2 className="w-6 h-6 mb-2" />
+                            <span className="text-sm font-medium">Share</span>
+                        </button>
+                        <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
+                            <Repeat className="w-6 h-6 mb-2" />
+                            <span className="text-sm font-medium">Repeat</span>
+                        </button>
+                        <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
+                            <Calendar className="w-6 h-6 mb-2" />
+                            <span className="text-sm font-medium">Add to Cal</span>
+                        </button>
+                        <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10">
+                            <Music className="w-6 h-6 mb-2" />
+                            <span className="text-sm font-medium">Theme</span>
+                        </button>
+                        <button
+                            onClick={() => setShowEmbedModal(true)}
+                            className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all border border-white/10 col-span-2 md:col-span-1"
+                        >
+                            <Code className="w-6 h-6 mb-2" />
+                            <span className="text-sm font-medium">Embed</span>
+                        </button>
+                    </div>
+                )}
             </div>
 
-            {/* Footer */}
-            <div className="p-6 text-center text-white/40 text-sm z-10">
-                Created with Ultra-Boring Tools
-            </div>
+            {/* Footer - Hidden in Embed Mode */}
+            {!isEmbed && (
+                <div className="p-6 text-center text-white/40 text-sm z-10">
+                    Created with Ultra-Boring Tools
+                </div>
+            )}
+
+            {/* Embed Modal */}
+            {showEmbedModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                    <div className="bg-white text-gray-900 rounded-2xl shadow-2xl max-w-lg w-full p-6 relative animate-in fade-in zoom-in duration-200">
+                        <button
+                            onClick={() => setShowEmbedModal(false)}
+                            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        <h3 className="text-xl font-bold mb-2">Embed this Countdown</h3>
+                        <p className="text-gray-500 mb-4 text-sm">Copy the code below to add this countdown to your website.</p>
+
+                        <div className="bg-gray-100 p-4 rounded-xl font-mono text-xs text-gray-700 break-all mb-4 border border-gray-200">
+                            {`<iframe src="${window.location.origin}/countdown/${id}?embed=true" width="100%" height="400" frameborder="0" style="border-radius: 12px; overflow: hidden;"></iframe>`}
+                        </div>
+
+                        <button
+                            onClick={handleCopyEmbed}
+                            className={`w-full py-3 rounded-xl font-bold flex items-center justify-center transition-all ${copied ? 'bg-green-500 text-white' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+                        >
+                            {copied ? (
+                                <>
+                                    <Check className="w-5 h-5 mr-2" />
+                                    Copied!
+                                </>
+                            ) : (
+                                <>
+                                    <Copy className="w-5 h-5 mr-2" />
+                                    Copy Code
+                                </>
+                            )}
+                        </button>
+                    </div>
+                </div>
+            )}
 
             <style jsx>{`
                 @keyframes fall {
